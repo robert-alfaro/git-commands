@@ -1,0 +1,25 @@
+#!/bin/bash -e
+
+#
+# This script adds the command 'purge-branch' to Git.  This custom 
+# command/script allows us delete a branch both locally and remotely with
+# no questions asked. The command also prunes the branch list.
+#
+# DANGEROUS!
+#
+
+usage () {
+	echo -e "Usage: git purge-branch <branch>\n"
+	exit $1
+}
+
+if [ $# -le 0 ]; then
+	echo -e "Err: missing argument!\n"
+	usage 1
+fi
+
+git branch -D "$1"
+git push origin --delete "$1"
+git remote prune origin
+
+exit 0

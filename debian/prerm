@@ -1,0 +1,15 @@
+#!/bin/bash -e
+
+# who am i
+USER=`who | awk '{ print $1 }' | sort | uniq | tail -1`
+
+# /usr/bin/ symlinks
+rm -f "/usr/bin/git-push-branch"
+rm -f "/usr/bin/git-purge-branch"
+rm -f "/usr/bin/git-add-commit"
+rm -f "/usr/bin/git-add-push"
+rm -f "/usr/bin/git-unstage"
+rm -f "/usr/bin/git-last"
+rm -f "/usr/bin/git-meld"
+rm -f "/usr/bin/git-ignored"
+rm -f "/usr/bin/git-update"

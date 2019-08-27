@@ -1,0 +1,26 @@
+#!/bin/bash -e
+
+#
+# This script adds the command 'last' to Git.  This custom 
+# command/script allows us see the last X entries of the log.
+#
+
+usage () {
+	echo -e "Usage: git last <num>"
+	echo -e "  <num> is optional, default: 1\n"
+	exit $1
+}
+
+if [ $# -le 0 ]; then
+	num=1
+else
+	# is arg an int?
+	if ! printf "%i" "$1" &>/dev/null; then
+		usage 1
+	fi
+	num="$1"
+fi
+
+git --no-pager log -$num HEAD
+
+exit 0

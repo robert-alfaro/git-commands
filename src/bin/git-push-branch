@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+#
+# This script adds the command 'push-branch' to Git.  This custom 
+# command/script allows us to push a locally created branch to the remote 
+# origin with ease.
+#
+
+usage () {
+	echo -e "Usage: git push-branch <branch>\n"
+	exit $1
+}
+
+if [ $# -le 0 ]; then
+	echo -e "Err: missing argument!\n"
+	usage 1
+fi
+
+git push -u origin "$1"
+
+exit 0

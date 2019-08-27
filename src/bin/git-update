@@ -1,0 +1,18 @@
+#!/bin/bash -e
+
+#
+# This script adds the command 'update' to Git.  This custom 
+# command/script allows submodules to be updated (recursively).
+#
+
+usage () {
+	echo -e "Usage: git update\n"
+	exit $1
+}
+
+if [ "$1" == "-h" ]; then
+	usage 0
+fi
+
+git submodule update --init --recursive &
+

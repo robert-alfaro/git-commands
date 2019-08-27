@@ -1,0 +1,20 @@
+#!/bin/bash -e
+
+#
+# This script adds the command 'unstage' to Git.  This custom 
+# command/script allows us to 'unstage' select files directly via 'reset'.
+#
+
+usage () {
+	echo -e "Usage: git unstage <files>\n"
+	exit $1
+}
+
+if [ $# -le 0 ]; then
+	echo -e "Err: missing argument!\n"
+	usage 1
+fi
+
+git reset HEAD "$@"
+
+exit 0
