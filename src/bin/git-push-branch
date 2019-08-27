@@ -12,10 +12,12 @@ usage () {
 }
 
 if [ $# -le 0 ]; then
-	echo -e "Err: missing argument!\n"
-	usage 1
+	# set branch to current branch
+	branch=$(git branch | grep '*' | cut -d' ' -f2)
+else
+	branch="$1"
 fi
 
-git push -u origin "$1"
+git push -u origin "$branch"
 
 exit 0
