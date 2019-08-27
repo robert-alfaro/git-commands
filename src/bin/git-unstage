@@ -11,10 +11,11 @@ usage () {
 }
 
 if [ $# -le 0 ]; then
-	echo -e "Err: missing argument!\n"
-	usage 1
+	paths="."  # set current directory if nothing specified
+else
+	paths="$@"
 fi
 
-git reset HEAD "$@"
+git reset HEAD $paths
 
 exit 0
