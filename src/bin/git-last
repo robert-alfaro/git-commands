@@ -6,21 +6,29 @@
 #
 
 usage () {
-	echo -e "Usage: git last <num>"
+	echo -e "Usage: git last <num> <refspec>"
 	echo -e "  <num> is optional, default: 1\n"
+        echo -e "  <refspec> is optional, default: HEAD\n"
 	exit $1
 }
 
 if [ $# -le 0 ]; then
 	num=1
+	ref=HEAD
 else
 	# is arg an int?
 	if ! printf "%i" "$1" &>/dev/null; then
 		usage 1
 	fi
 	num="$1"
+	# arg2 passed in?
+	if [ -z "$2" ]; then
+		ref=HEAD
+	else
+		ref="$2"
+	fi
 fi
 
-git --no-pager log -$num HEAD
+git --no-pager log -"$num" "$ref"
 
 exit 0
